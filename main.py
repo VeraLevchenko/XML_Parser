@@ -80,8 +80,15 @@ def make_list_for_mid_actual_land(file_name):
         for adress in data4:
             _adress = adress.text
         data5 = data1.findall('params/permitted_use/permitted_use_established/by_document')
-        for permitted_use in data5:
-            _permitted_use = permitted_use.text
+        if len(data5) >= 1:
+            for permitted_use in data5:
+                _permitted_use = permitted_use.text
+                #  Обрезаем, если длина строки более 250
+                if len(_permitted_use) > 250:
+                    _permitted_use = _permitted_use[:250] + "..."
+
+        else:
+            _permitted_use = "None"
         data6 = data1.findall('params/area/value')
         for area in data6:
             _area = area.text
@@ -122,7 +129,7 @@ if __name__ == '__main__':
         for data8 in list_coordinate_land_record:
            file_mif.write(str(data8) + '\n')
         file_mif.close()
-        # записываем данные mid в файл????????????????
+        # записываем данные mid в файл
         land = make_list_for_mid_actual_land(file_name)
         file_mid = open('actual_land.mid', 'a')
         file_mid.write(land)
