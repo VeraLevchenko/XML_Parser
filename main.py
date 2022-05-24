@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 import os
 
-
 # функция возвращает список .xml файлов из папки, включая подпапки, кроме proto_.xml
 def get_file_list(path):
     filelist = []
@@ -117,10 +116,12 @@ def make_list_for_mid_actual_land(file_name):
 
 
 if __name__ == '__main__':
+    name_directory = do()
      # Запись заголовков в mif
     print_head_mif()
     # filelist = get_file_list("C:/Users/Necvetaeva_v/PycharmProjects/ParserXML/materials/23.05.2022_12_32_выгрузка/Новая папка")
-    filelist = get_file_list("D:\project_Python\ParserXML\materials\_Level1")
+    filelist = get_file_list(name_directory)
+    # filelist = get_file_list("D:\project_Python\ParserXML\materials\_Level1")
     # Открываем поочередно кпт.xml файлы
     for file_name in filelist:
         file_mif = open('actual_land.mif', 'a')
